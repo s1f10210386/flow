@@ -24,12 +24,13 @@ export const getTasks = async (userId: UserId, limit?: number): Promise<TaskMode
 };
 
 export const createTask = async (userId: UserId, label: TaskModel['label']): Promise<TaskModel> => {
+  const Newlabel = `NEW:${label}`;
   const prismaTask = await prismaClient.task.create({
     data: {
       id: randomUUID(),
       userId,
       done: false,
-      label,
+      label: Newlabel,
       createdAt: new Date(),
     },
   });

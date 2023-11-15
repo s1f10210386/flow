@@ -16,11 +16,17 @@ const Home = () => {
   const inputLabel = (e: ChangeEvent<HTMLInputElement>) => {
     setLabel(e.target.value);
   };
+
+  //APIでタスクを取得
   const fetchTasks = async () => {
     const tasks = await apiClient.tasks.$get().catch(returnNull);
 
     if (tasks !== null) setTasks(tasks);
+
+    console.log('tasks', tasks);
   };
+
+  //label変数にしてpostしてapiClientに渡す
   const createTask = async (e: FormEvent) => {
     e.preventDefault();
     if (!label) return;
@@ -28,6 +34,7 @@ const Home = () => {
     await apiClient.tasks.post({ body: { label } }).catch(returnNull);
     setLabel('');
     await fetchTasks();
+    console.log('今書いたやつ', label);
   };
   const toggleDone = async (task: TaskModel) => {
     await apiClient.tasks
@@ -53,7 +60,7 @@ const Home = () => {
     <>
       <BasicHeader user={user} />
       <div className={styles.title} style={{ marginTop: '160px' }}>
-        Welcome to frourio!
+        frourio Test!
       </div>
 
       <form style={{ textAlign: 'center', marginTop: '80px' }} onSubmit={createTask}>
