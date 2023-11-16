@@ -1,14 +1,16 @@
-import { GithubAuthProvider, signInWithPopup } from 'firebase/auth';
-import { createAuth } from 'src/utils/firebase';
-import { returnNull } from './returnNull';
+//これでloginいったんスキップ
 
-export const loginWithGitHub = async () => {
-  const ghProvider = new GithubAuthProvider();
-  ghProvider.addScope('read:user');
+// import { GithubAuthProvider, signInWithPopup } from 'firebase/auth';
+// import { createAuth } from 'src/utils/firebase';
+// import { returnNull } from './returnNull';
 
-  await signInWithPopup(createAuth(), ghProvider).catch(returnNull);
-};
+// export const loginWithGitHub = async () => {
+//   const ghProvider = new GithubAuthProvider();
+//   ghProvider.addScope('read:user');
 
-export const logout = async () => {
-  await createAuth().signOut();
-};
+//   await signInWithPopup(createAuth(), ghProvider).catch(returnNull);
+// };
+
+// export const logout = async () => {
+//   await createAuth().signOut();
+// };
